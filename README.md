@@ -91,8 +91,8 @@ Your assignment page on Canvas should contain instructions for submitting this p
 
 - If there's an error in removing the _post_ from the database:
 
-  - respond with HTTP status code `500`.
-  - return the following JSON: `{ message: "The post could not be removed" }`.
+  -X respond with HTTP status code `500`.
+  -X return the following JSON: `{ message: "The post could not be removed" }`.
 
 #### 6 [GET] /api/posts/:id/comments
 
