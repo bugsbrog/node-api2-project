@@ -11,6 +11,17 @@ router.get('/', async (req, res) => {
         })
     }
 })
+// .then() .catch() way
+
+// Posts.find()
+//  .then(getPost => {
+//      res.json(getPost)
+//  })
+// .catch (err => {
+//    res.status(500).json({
+//        message: 'The posts information could not be retrieved'
+//    })
+// })
 
 router.get('/:id', async (req, res) => {
     const { id } = req.params
