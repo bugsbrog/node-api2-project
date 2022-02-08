@@ -52,24 +52,39 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     const { id } = req.params
+    const { title, contents } = req.body
         try {
-
-        } catch {
-            res.status(500).json({
-                message: ''
-            })
-        }
+            const postId = await Posts.findById(id)
+                if (!postId) {
+                    res.status(404).json({
+                        message: 'The post with the specified ID does not exist'
+                    })
+                } else if (!title || !contents) {
+                    res.status(400).json({
+                        message: 'Please provide title and contents for the post'
+                    })
+                } else {
+                    await Posts.update(id, { title, contents })
+                    // WHY DO WE HAVE TO DO IT THIS WAY?
+                    const updatePost = await Posts.findById(id)
+                    res.json(updatePost)
+                }
+            } catch {
+                res.status(500).json({
+                    message: 'The post information could not be modified'
+                })
+            }
 })
 
 router.delete('/:id', async (req, res) => {
     const { id } = req.params
         try {
 
-        } catch {
-            res.status(500).json({
-                message: 'The post could not be removed'
-            })
-        }
+            } catch {
+                res.status(500).json({
+                    message: 'The post could not be removed'
+                })
+            }
 })
 
 router.get('/:id/comments', async (req, res) => {
