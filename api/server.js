@@ -13,9 +13,9 @@ server.use(cors())
 server.use('/api/posts', postsRouter)
 
 server.use('*', (req, res) => {
-    res.status(404).send(`
-    <p>Having trouble finding that resource</p>
-    `)
+    res.status(404).json({
+        message: 'Having trouble finding that resource'
+    })
 })
 
 module.exports = server
