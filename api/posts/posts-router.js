@@ -112,6 +112,39 @@ router.put('/:id', async (req, res) => {
 
 // .then() .catch() way
 
+// const { id } = req.params
+// const { title, contents } = req.body
+//  if (!title || !contents) {
+//      res.status(400).json({
+//          message: 'Please provide title and contents for the post'
+//      })
+//   } else {
+//     Posts.findById(id)
+//       .then(postId => {
+//          if (!postId) {
+//              res.status(404).json({
+//                  message: 'The post with the specified ID does not exist'
+//              })
+//          } else {
+//            return Posts.update(id, { title, contents })
+//          }
+//       })
+//      .then(updatePost => {
+//          if (updatePost) {
+//              return Posts.findById(id)
+//          }
+//      })
+//      .then(post => {
+//         if (post) {
+//            res.json(post)
+//         }
+//      })
+//      .catch(err => {
+//         res.status(500).json({
+//             message: 'The post information could not be modified'
+//         })
+//      })
+
 router.delete('/:id', async (req, res) => {
     const { id } = req.params
         try {
@@ -121,6 +154,7 @@ router.delete('/:id', async (req, res) => {
                         message: 'The post with the specified ID does not exist'
                     })
                 } else {
+                    // When Posts.remove resolves, it will resolve eventually to the # of records that got deleted from the db (Example: 1 will show up if you delete 1 record)
                     await Posts.remove(id)
                     res.json(deletePost)
                 }
@@ -130,8 +164,6 @@ router.delete('/:id', async (req, res) => {
                 })
             }
 })
-
-// .then() .catch() way
 
 router.get('/:id/comments', async (req, res) => {
     const { id } = req.params
