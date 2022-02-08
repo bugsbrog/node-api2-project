@@ -169,12 +169,12 @@ router.get('/:id/comments', async (req, res) => {
     const { id } = req.params
         try {
             const postId = await Posts.findById(id)
-            const comment = await Posts.findPostComments(id)
                 if (!postId) {
                     res.status(404).json({
                         message: 'The post with the specified ID does not exist'
                     })
                 } else {
+                    const comment = await Posts.findPostComments(id)
                     res.json(comment)
                 }
             } catch {
@@ -183,7 +183,5 @@ router.get('/:id/comments', async (req, res) => {
                 })
             }
 })
-
-// .then() .catch() way
 
 module.exports = router
