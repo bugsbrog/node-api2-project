@@ -86,8 +86,8 @@ Your assignment page on Canvas should contain instructions for submitting this p
 
 - If the _post_ with the specified `id` is not found:
 
-  - return HTTP status code `404` (Not Found).
-  - return the following JSON: `{ message: "The post with the specified ID does not exist" }`.
+  -X return HTTP status code `404` (Not Found).
+  -X return the following JSON: `{ message: "The post with the specified ID does not exist" }`.
 
 - If there's an error in removing the _post_ from the database:
 
