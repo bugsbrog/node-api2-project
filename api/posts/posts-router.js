@@ -11,13 +11,14 @@ router.get('/', async (req, res) => {
         })
     }
 })
+
 // .then() .catch() way
 
 // Posts.find()
 //  .then(getPost => {
-//      res.json(getPost)
+//     res.json(getPost)
 //  })
-// .catch (err => {
+// .catch(err => {
 //    res.status(500).json({
 //        message: 'The posts information could not be retrieved'
 //    })
@@ -61,6 +62,28 @@ router.post('/', async (req, res) => {
         }
 })
 
+// .then() .catch() way
+
+// const { title, contents } = req.body
+//  if (!title || !contents) {
+//      res.status(400).json({
+//          message: 'Please provide title and contents for the post'
+//      })
+//  } else {
+//      Post.insert({ title, contents })
+//        .then(({ id }) => {
+//          return Posts.findById(id)
+//        })
+//        .then(newPost => {
+//          res.status(201).json(newPost)
+//        })
+//        .catch(err => {
+//           res.status(500).json({
+//               message: 'There was an error while saving the post to the database'
+//           })
+//        })
+// }
+
 router.put('/:id', async (req, res) => {
     const { id } = req.params
     const { title, contents } = req.body
@@ -87,6 +110,8 @@ router.put('/:id', async (req, res) => {
             }
 })
 
+// .then() .catch() way
+
 router.delete('/:id', async (req, res) => {
     const { id } = req.params
         try {
@@ -106,6 +131,8 @@ router.delete('/:id', async (req, res) => {
             }
 })
 
+// .then() .catch() way
+
 router.get('/:id/comments', async (req, res) => {
     const { id } = req.params
         try {
@@ -124,5 +151,7 @@ router.get('/:id/comments', async (req, res) => {
                 })
             }
 })
+
+// .then() .catch() way
 
 module.exports = router
